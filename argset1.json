@@ -1,0 +1,7 @@
+{
+  "layers" : 2,
+  "layer_features" : [128, 10],
+  "layer_dropout" : [0.25, 0.5],
+  "training_epochs" : 3,
+  "test" : [3, 1]
+}
