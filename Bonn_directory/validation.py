@@ -27,7 +27,7 @@ def validation(te_dataloader, cnn_model, args):
 
             labels_te_max = torch.max(labels_te, 1)[1]
             loss_te = tr_criterion(outputs_te, labels_te_max)
-            te_avg_loss+= loss_te/64
+            te_avg_loss+= loss_te/320
 
             _, predicted = torch.max(outputs_te.data, 1)
             for label, prediction in zip(labels_te_max, predicted):
@@ -39,6 +39,6 @@ def validation(te_dataloader, cnn_model, args):
     if te_total != 0:
         te_accuracy = te_correct / te_total
     print('validation loss : %f' % te_avg_loss)
-    print('accuracy : %f' % te_accuracy)
+    print('validation accuracy : %f' % te_accuracy)
 
     return te_avg_loss, te_accuracy

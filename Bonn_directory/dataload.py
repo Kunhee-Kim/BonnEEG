@@ -17,6 +17,7 @@ import torch.nn as nn
 import torch.nn.functional as functional
 from torch.utils.data import DataLoader
 import torchvision
+import augmentation as aug
 
 from torch.utils.tensorboard import SummaryWriter
 
@@ -132,6 +133,15 @@ for i in training_index :
     training_raw_data.append(total_raw_data[i])
     training_labels.append(total_labels[i])
 
+    training_raw_data.append(aug.jitter(total_raw_data[i]))
+    training_labels.append(aug.same(total_labels[i]))
+    training_raw_data.append(aug.scaling(total_raw_data[i]))
+    training_labels.append(aug.same(total_labels[i]))
+    training_raw_data.append(aug.rotation(total_raw_data[i]))
+    training_labels.append(aug.same(total_labels[i]))
+    training_raw_data.append(aug.permutation(total_raw_data[i]))
+    training_labels.append(aug.same(total_labels[i]))
+
 for i in test_index :
     test_raw_data.append(total_raw_data[i])
     test_labels.append(total_labels[i])
@@ -172,9 +182,9 @@ class dataloader():
         test_generator = torch.utils.data.DataLoader(test_set, **params)
         """
 
-        self.training_set = Dataset(training_raw_data, total_labels)
+        self.training_set = Dataset(training_raw_data, training_labels)
         self.training_generator = torch.utils.data.DataLoader(self.training_set, **params, batch_size=args.batch_size)
-        self.test_set = Dataset(test_raw_data, total_labels)
+        self.test_set = Dataset(test_raw_data, test_labels)
         self.test_generator = torch.utils.data.DataLoader(self.test_set, **params, batch_size=args.batch_size)
 
 

@@ -34,6 +34,7 @@ from Bonn_directory import training
 from Bonn_directory import validation
 from Bonn_directory import testing
 from Bonn_directory import dataload
+import augmentation
 
 
 # device
@@ -112,6 +113,7 @@ def main(args):
         val_sub_Bonn = torch.utils.data.Subset(dataloader.training_set, val_index)
         train_sub_dataloader = DataLoader(train_sub_Bonn, batch_size=batch_size, shuffle=True, drop_last=True)
         val_sub_dataloader = DataLoader(val_sub_Bonn, batch_size=batch_size, shuffle=True, drop_last=True)
+
 
         # train, validate
         training_loss = training.training(train_sub_dataloader, model, args)

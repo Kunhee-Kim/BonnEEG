@@ -32,7 +32,7 @@ def training(tr_generator, cnn_model, args):
             loss.backward()
             tr_optimizer.step()
 
-            avg_loss += loss/300
+            avg_loss += loss/1500
 
         print('[Epoch: {:>4}] cost = {:>.9}'.format(epoch + 1, avg_loss))
         loss = avg_loss

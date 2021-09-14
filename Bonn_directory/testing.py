@@ -42,6 +42,6 @@ def testing(te_dataloader, cnn_model, args):
 
     print('test total : %f'%te_total)
     print('test loss : %f'%te_avg_loss)
-    print('accuracy : %f'%te_accuracy)
+    print('test accuracy : %f'%te_accuracy)
 
     return te_avg_loss, te_accuracy
